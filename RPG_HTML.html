@@ -1,164 +1,283 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>RPG</title>
 </head>
 
 <body>
     <form onsubmit="return false" id="form">
-        <input type="text" id="playerName" required>
-        <button type="submit" onclick="Start()">Start</button>
-        <button type="submit" onclick="test()">test</button>
+        <input type="text" id="playerName" placeholder="entre un nom fpd (fruit de la passion)" required>
+        <button type='submit' onclick='Start()'>Start</button>
     </form>
+    <p id="Result"></p>
     <div id="error message"></div>
     <p id="messagefight"></p>
-    <p id="Display"></p>
+    <p id='title'></p>
+    <div id="Combat">
+        <p id="DisplayPlayer"></p>
+        <p id="Display"></p>
+    </div>
+    <style>
+        body {
+            background-image: url('grass.png');
+        }
+
+        #player {
+            border: 10px solid brown;
+        }
+
+        #Combat {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        #DisplayPlayer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+            color: brown;
+            text-shadow: 2px 2px 10px black;
+        }
+
+        #Display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+            color: brown;
+            text-shadow: 2px 2px 10px black;
+        }
+
+        #title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 40px;
+            color: brown;
+            text-shadow: 2px 2px 10px black;
+        }
+    </style>
     <script>
+        var potion;
         var force;
-        var agile;
+        var agility;
         var endurance;
         var hp;
         var po;
-        var Inventory;
-        var enduranceia=7;
-        var forceia=5;
-        var hpia;
-        const possibleIAName=["Andre","Thibaud","Angamara","François","Romain","Robin","Romuald"];
+        var Inventory = [];
+        var enduranceia = 7;
+        var forceia = 5;
+        var hpia = enduranceia;
+        var maxStrength;
+        var maxAgility;
+        var maxEndurance;
+        const possibleIAName = ["Andre", "Thibaud", "Angamara", "François", "Romain", "Robin", "Romuald"];
         function getRandomInt(max) {
             return Math.floor(Math.random() * Math.floor(max));
         }
         var iaName = possibleIAName[getRandomInt(6)];
-        
-        function DrawIA(){
-            
-            if (iaName=="Andre"){
-                document.getElementById("Display").innerHTML = "<img src='Andre.png' width='300' height='500'>";
+
+        function DrawIA() {
+            document.getElementById("DisplayPlayer").innerHTML = "<h2>" + playerName + "</h2>" + "<img id='player' src='Player.png' width='300' height='500'>";
+            if (iaName == "Andre") {
+                document.getElementById("Display").innerHTML = "<h2>Andre</h2>" + "<img id='player' src='Andre.png' width='300' height='500'>";
             }
-            else if(iaName=="Thibaud"){
-                document.getElementById("Display").innerHTML = "<img src='Thibaud.png' width='300' height='500'>";
+            else if (iaName == "Thibaud") {
+                document.getElementById("Display").innerHTML = "<h2>Thibaud</h2>" + "<img id='player' src='Thibaud.png' width='300' height='500'>";
             }
-            else if(iaName=="Angamara"){
-                document.getElementById("Display").innerHTML = "<img src='Angamara.png' width='300' height='500'>";
+            else if (iaName == "Angamara") {
+                document.getElementById("Display").innerHTML = "<h2>Angamara</h2>" + "<img id='player'src='Angamara.png' width='300' height='500'>";
             }
-            else if(iaName=="François"){
-                document.getElementById("Display").innerHTML ="<img src='François.png' width='300' height='500'>"; 
+            else if (iaName == "François") {
+                document.getElementById("Display").innerHTML = "<h2>François</h2>" + "<img id='player' src='François.png' width='300' height='500'>";
             }
-            else if(iaName=="Romain"){
-                document.getElementById("Display").innerHTML ="<img src='Romain.png' width='300' height='500'>"; 
+            else if (iaName == "Romain") {
+                document.getElementById("Display").innerHTML = "<h2>Romain</h2>" + "<img id='player' src='Romain.png' width='300' height='500'>";
             }
-            else if(iaName=="Robin"){
-                document.getElementById("Display").innerHTML = "<img src='Robin.png' width='300' height='500'>";
+            else if (iaName == "Robin") {
+                document.getElementById("Display").innerHTML = "<h2>Robin</h2>" + "<img id='player' src='Robin.png' width='300' height='500'>";
             }
-            else if(iaName=="Romuald"){
-                document.getElementById("Display").innerHTML = "<img src='Romuald.png' width='300' height='500'>";
+            else if (iaName == "Romuald") {
+                document.getElementById("Display").innerHTML = "<h1>Romuald</h1>" + "<img id='player' src='Romuald.png' width='300' height='500'>";
             }
         }
         function Start() {
             if (playerName = document.getElementById("playerName").value == "") {
+
             }
             else {
                 playerName = document.getElementById("playerName").value;
                 Menu();
             }
+            Hero();
+
 
         }
         function Menu() {
+            document.getElementById("error message").innerHTML = "";
             document.getElementById("form").innerHTML = "<button type='submit' onclick='Shop()'>Shop</button>" + "<button type='submit' onclick='Fight()''>Fight</button>" +
-                "<button type='submit' onclick='Inventory()''>Inventory</button> ";
+                "<button type='submit' onclick='PlayerInventory()'>Inventory</button>";
         }
         function Shop() {
-            document.getElementById("form").innerHTML = "<button type='submit' onclick=''>Potion de Force </button>" +
-                "<button type='submit' onclick=''>Potion d'agilité</button>" + "<button type='submit' onclick=''>Potion d'endurance</button>" + "<button type='submit' onclick=''>Petite potion de vie</button>" + "<button type='submit' onclick=''>Potion de vie</button>" + "<button type='submit' onclick='Menu()'>Menu</button>";
+            document.getElementById("error message").innerHTML = "";
+            document.getElementById("form").innerHTML = "<button type='submit' onclick='BuyPotion(\"strength\")'>Potion de Force </button>" +
+                "<button type='submit' onclick='BuyPotion(\"agility\")'>Potion d'agilité</button>" + "<button type='submit' onclick='BuyPotion(\"endurance\")'>Potion d'endurance</button>" +
+                "<button type='submit' onclick='BuyPotion(\"lifeSmall\")'>Petite potion de vie</button>" + "<button type='submit' onclick='BuyPotion(\"lifeBig\")'>Grosse potion de vie</button>" +
+                "<button type='submit' onclick='Menu()'>Menu</button>";
         }
-        function Inventory() {
-            document.getElementById("form").innerHTML = "";
-            
+        function PlayerInventory() {
+            document.getElementById("error message").innerHTML = "";
+            document.getElementById("form").innerHTML = "<p>Que voulez vous utiliser?</p>" + "<button type='submit' onclick='StrengthPotion()'>Potion de Force </button>" +
+                "<button type='submit' onclick='AgilityPotion()'>Potion d'agilité</button>" + "<button type='submit' onclick='EndurancePotion()'>Potion d'endurance</button>" +
+                "<button type='submit' onclick='SmallLifePotion()'>Petite potion de vie</button>" + "<button type='submit' onclick='BigLifePotion()'>Grosse potion de vie</button>" +
+                "<button type='submit' onclick='Menu()'>Menu</button>";
         }
-
         function Hero() {
             endurance = 100;
-            hp = endurance
+            hp = endurance;
             force = 10;
-            agile = 10;
+            agility = 10;
             po = 0;
-            Inventory = [];
+            maxStrength = force;
+            maxAgility = agility;
+            maxEndurance = endurance;
         }
-
-        function IA(){
-            enduranceia;
-            hpia = enduranceia
-            forceia;
+        function ResetStats() {
+            hpia = enduranceia;
+            endurance = maxEndurance;
+            agility = maxAgility;
+            force = maxStrength;
         }
-
-        function IAwin(){
+        function IAwin() {
             enduranceia++
-            hpia=enduranceia
+            hpia = enduranceia
             forceia++
         }
-
-
-        function potion_for() {
-            endurance = force + 1;
-            po = po - 2;
-            (delete Inventory["potionFor"]);
-            Inventory.splice(Inventory.indexOf("potionFor", 1));
-        }
-        function potion_agi() {
-            agile = agile + 1;
-            po = po - 2;
-            Inventory.splice(Inventory.indexOf("potionAgi", 1));
-        }
-        function potion_endu() {
-            endurance = endurance + 1;
-            po = po - 1;
-            Inventory.splice(Inventory.indexOf("potionEndu", 1));
-        }
-        function potion_Pvie() {
-            hp = hp + 10;
-            po = po - 3;
-            Inventory.splice(Inventory.indexOf("potionPvie", 1));
-        }
-        function potion_Gvie() {
-            hp = hp + 20;
-            po = po - 5; 
-            Inventory.splice(Inventory.indexOf("potionGvie", 1));
-        }
-        var chance = getRandomInt(100);
-
         function Fight() {
-        DrawIA();
-        Hero();
-        IA();
-        chance = getRandomInt(100 + 1);
-        while(hp > 0 && hpia < 0 || hp < 0 && hpia > 0){
-            document.getElementById("messagefight").innerHTML="Debut du combat ";
-            if (chance < agile){
-                
-                hpia = hpia - force;
-                document.getElementById("messagefight").innerHTML="Debut ";
-                hp = hp - forceia;
-            }else{
-                hp = hp - forceia;
-                document.getElementById("messagefight").innerHTML="Debut du combatfzzfeefzfze";
-                hpia= hpia - force;
+            DrawIA();
+            let firstHit = false;
+            while (hp != 0 && hpia != 0) {
+                if (firstHit == false && getRandomInt(100) <= agility) {
+                    firstHit = true;
+                    hpia -= force;
+
+                }
+                else {
+                    hpia=hpia - force;
+                    if (hpia <= 0) {
+                        document.getElementById("Result").innerHTML = "Victory";
+                        po=po+3;
+                        if(getRandomInt(100)<=10){
+                            Inventory.push("lifeSmall");
+                        }
+                        break;
+                    }
+                    hp = hp-forceia;
+                    if (hp <=0) {
+                        document.getElementById("Result").innerHTML = "Defeat";
+                        break;
+                    }
+                    
+
+                }
+            }
+            ResetStats();
+            document.getElementById("form").innerHTML = "<button onclick=\"ClearBoard()\">Menu</button>";
+        }
+        function ClearBoard() {
+            Menu();
+            document.getElementById("DisplayPlayer").innerHTML = "";
+            document.getElementById("Display").innerHTML = "";
+            document.getElementById("Result").innerHTML = "";
+        }
+
+        function StrengthPotion() {
+            if (Inventory.includes("strength")) {
+                force = force + 1;
+                Inventory.splice(Inventory.indexOf("strength", 1));
+            }
+            else {
+                document.getElementById("error message").innerHTML = "Vous n'avez pas de potion de force";
             }
         }
-        if (hp = 0){
-            document.getElementById("messagefight").innerHTML="Vous avez perdu !";
-        }else if(hpia = 0){
-            document.getElementById("messagefight").innerHTML="Vous avez gagner";
+        function AgilityPotion() {
+            if (Inventory.includes("agility")) {
+                agile = agile + 1;
+                Inventory.splice(Inventory.indexOf("agility", 1));
+            }
+            else {
+                document.getElementById("error message").innerHTML = "Vous n'avez pas de potion d'agilité";
+            }
+
         }
-    }
-
-
-
-
-
-
+        function EndurancePotion() {
+            if (Inventory.includes("endurance")) {
+                endurance = endurance + 1;
+                Inventory.splice(Inventory.indexOf("endurance", 1));
+            }
+            else {
+                document.getElementById("error message").innerHTML = "Vous n'avez pas de potion d'endurance";
+            }
+        }
+        function SmallLifePotion() {
+            if (Inventory.includes("lifeSmall")) {
+                hp = hp + 10;
+                if (hp > endurance) {
+                    hp = endurance;
+                }
+                Inventory.splice(Inventory.indexOf("lifeSmall", 1));
+            }
+            else {
+                document.getElementById("error message").innerHTML = "Vous n'avez pas de petite potion de soin";
+            }
+        }
+        function BigLifePotion() {
+            if (Inventory.includes("lifeBig")) {
+                hp = hp + 20;
+                if (hp > endurance) {
+                    hp = endurance;
+                }
+                Inventory.splice(Inventory.indexOf("lifeBig", 1));
+            }
+            else {
+                document.getElementById("error message").innerHTML = "Vous n'avez pas de grande potion de soin";
+            }
+        }
+        function BuyPotion(potion) {
+            document.getElementById("error message").innerHTML = "";
+            if (potion == "strength" && po >= 2) {
+                po = po - 2;
+                Inventory.push("strength");
+            }
+            else if (potion == "agility" && po >= 2) {
+                po = po - 2;
+                Inventory.push("agility");
+            }
+            else if (potion == "endurance" && po >= 2) {
+                po = po - 2;
+                Inventory.push("endurance");
+            }
+            else if (potion == "lifeSmall" && po >= 3) {
+                po = po - 3;
+                Inventory.push("lifeSmall");
+            }
+            else if (potion == "lifeBig" && po >= 5) {
+                po = po - 5;
+                Inventory.push("lifeBig");
+            }
+            else {
+                document.getElementById("error message").innerHTML = "you don't have enough money to buy this";
+            }
+        }
     </script>
 </body>
 
