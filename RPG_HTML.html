@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>RPG</title>
 </head>
 
 <body>
     <form onsubmit="return false" id="form">
-        <input type="text" id="playerName" required>
-        <button type="submit" onclick="Start()">Start</button>
+        <input type="text" id="playerName" placeholder="entre un nom fpd (fruit de la passion)" required>
+        <button type='submit' onclick='Start()'>Start</button>
     </form>
     <div id="error message"></div>
     <p id="messagefight"></p>
@@ -62,6 +62,7 @@
 
     </style>
     <script>
+        var potion;
         var force;
         var agile;
         var endurance;
@@ -103,6 +104,7 @@
         }
         function Start() {
             if (playerName = document.getElementById("playerName").value == "") {
+
             }
             else {
                 playerName = document.getElementById("playerName").value;
@@ -111,19 +113,24 @@
 
         }
         function Menu() {
+            document.getElementById("error message").innerHTML = "";
             document.getElementById("form").innerHTML = "<button type='submit' onclick='Shop()'>Shop</button>" + "<button type='submit' onclick='Fight()''>Fight</button>" +
-                "<button type='submit' onclick='Inventory()''>Inventory</button> ";
+                "<button type='submit' onclick='PlayerInventory()'>Inventory</button>";
         }
         function Shop() {
-            document.getElementById("form").innerHTML = "<button type='submit' onclick=''>Potion de Force </button>" +
-                "<button type='submit' onclick=''>Potion d'agilité</button>" + "<button type='submit' onclick=''>Potion d'endurance</button>" + "<button type='submit' onclick=''>Petite potion de vie</button>" + "<button type='submit' onclick=''>Potion de vie</button>" + "</br>"+"<button type='submit' onclick='Menu()'>Menu</button>";
+            document.getElementById("error message").innerHTML = "";
+            document.getElementById("form").innerHTML = "<button type='submit' onclick='BuyPotion(\"strength\")'>Potion de Force </button>" +
+                "<button type='submit' onclick='BuyPotion(\"agility\")'>Potion d'agilité</button>" + "<button type='submit' onclick='BuyPotion(\"endurance\")'>Potion d'endurance</button>" +
+                "<button type='submit' onclick='BuyPotion(\"lifeSmall\")'>Petite potion de vie</button>" + "<button type='submit' onclick='BuyPotion(\"lifeBig\")'>Grosse potion de vie</button>" +
+                "<button type='submit' onclick='Menu()'>Menu</button>";
         }
-        function Inventory() {
-            document.getElementById("form").innerHTML = "";
-            
+        function PlayerInventory() {
+            document.getElementById("error message").innerHTML = "";
+            document.getElementById("form").innerHTML = "<p>Que voulez vous utiliser?</p>" + "<button type='submit' onclick='StrengthPotion()'>Potion de Force </button>" +
+                "<button type='submit' onclick='AgilityPotion()'>Potion d'agilité</button>" + "<button type='submit' onclick='EndurancePotion()'>Potion d'endurance</button>" +
+                "<button type='submit' onclick='SmallLifePotion()'>Petite potion de vie</button>" + "<button type='submit' onclick='BigLifePotion()'>Grosse potion de vie</button>" +
+                "<button type='submit' onclick='Menu()'>Menu</button>";
         }
-
-
         function Hero() {
             endurance = 100;
             hp = endurance
@@ -168,10 +175,78 @@
     }
 
 
+        function StrengthPotion() {
+            if (Inventory.includes("strength")) {
+                force = force + 1;
+                Inventory.splice(Inventory.indexOf("strength", 1));
+            }
+            else {
+                document.getElementById("error message").innerHTML = "Vous n'avez pas de potion de force";
+            }
+        }
+        function AgilityPotion() {
+            if (Inventory.includes("agility")) {
+                agile = agile + 1;
+                Inventory.splice(Inventory.indexOf("agility", 1));
+            }
+            else{
+                document.getElementById("error message").innerHTML = "Vous n'avez pas de potion d'agilité";
+            }
 
-
-
-
+        }
+        function EndurancePotion() {
+            if (Inventory.includes("endurance")) {
+            endurance = endurance + 1;
+            Inventory.splice(Inventory.indexOf("endurance", 1));
+            }
+            else{
+                document.getElementById("error message").innerHTML = "Vous n'avez pas de potion d'endurance";
+            }
+        }
+        function SmallLifePotion() {
+            if (Inventory.includes("lifeSmall")) {
+            hp = hp + 10;
+            Inventory.splice(Inventory.indexOf("lifeSmall", 1));
+            }
+            else{
+                document.getElementById("error message").innerHTML = "Vous n'avez pas de petite potion de soin";                
+            }
+        }
+        function BigLifePotion() {
+            if (Inventory.includes("lifeBig")) {
+            hp = hp + 20;
+            Inventory.splice(Inventory.indexOf("lifeBig", 1));
+            }
+            else{
+                document.getElementById("error message").innerHTML = "Vous n'avez pas de grande potion de soin";                
+            }
+        }
+        function BuyPotion(potion) {
+            document.getElementById("error message").innerHTML = "";
+            if (potion == "strength" && po >= 2) {
+                po = po - 2;
+                Inventory.push("strength");
+            }
+            else if (potion == "agility" && po >= 2) {
+                po = po - 2;
+                Inventory.push("agility");
+            }
+            else if (potion == "endurance" && po >= 2) {
+                po = po - 2;
+                Inventory.push("endurance");
+            }
+            else if (potion == "lifeSmall" && po >= 3) {
+                po = po - 3;
+                Inventory.push("lifeSmall");
+            }
+            else if (potion == "lifeBig" && po >= 5) {
+                po = po - 5;
+                Inventory.push("lifeBig");
+            }
+            else {
+                document.getElementById("error message").innerHTML = "you don't have enough money to buy this";
+            }
+        }
     </script>
 </body>
 
