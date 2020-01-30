@@ -151,6 +151,7 @@
             hpia=enduranceia
             forceia++
         }
+
         Hero();
         IA();
 
@@ -195,19 +196,6 @@
         }
         function EndurancePotion() {
             if (Inventory.includes("endurance")) {
-
-        function potion_for() {
-            endurance = force + 1;
-            po = po - 2;
-            (delete Inventory["potionFor"]);
-            Inventory.splice(Inventory.indexOf("potionFor", 1));
-        }
-        function potion_agi() {
-            agile = agile + 1;
-            po = po - 2;
-            Inventory.splice(Inventory.indexOf("potionAgi", 1));
-        }
-        function potion_endu() {
             endurance = endurance + 1;
             Inventory.splice(Inventory.indexOf("endurance", 1));
             }
@@ -259,38 +247,6 @@
                 document.getElementById("error message").innerHTML = "you don't have enough money to buy this";
             }
         }
-        var chance = getRandomInt(100);
-
-        function Fight() {
-        DrawIA();
-        Hero();
-        IA();
-        chance = getRandomInt(100 + 1);
-        while(hp > 0 && hpia < 0 || hp < 0 && hpia > 0){
-            document.getElementById("messagefight").innerHTML="Debut du combat ";
-            if (chance < agile){
-                
-                hpia = hpia - force;
-                document.getElementById("messagefight").innerHTML="Debut ";
-                hp = hp - forceia;
-            }else{
-                hp = hp - forceia;
-                document.getElementById("messagefight").innerHTML="Debut du combatfzzfeefzfze";
-                hpia= hpia - force;
-            }
-        }
-        if (hp = 0){
-            document.getElementById("messagefight").innerHTML="Vous avez perdu !";
-        }else if(hpia = 0){
-            document.getElementById("messagefight").innerHTML="Vous avez gagner";
-        }
-    }
-
-
-
-
-
-
     </script>
 </body>
 
