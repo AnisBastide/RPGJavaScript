@@ -15,6 +15,7 @@
         <button type="submit" onclick="test()">test</button>
     </form>
     <div id="error message"></div>
+    <p id="messagefight"></p>
     <p id="Display"></p>
     <script>
         var force;
@@ -31,8 +32,9 @@
             return Math.floor(Math.random() * Math.floor(max));
         }
         var iaName = possibleIAName[getRandomInt(6)];
-        DrawIA();
+        
         function DrawIA(){
+            
             if (iaName=="Andre"){
                 document.getElementById("Display").innerHTML = "<img src='Andre.png' width='300' height='500'>";
             }
@@ -98,8 +100,7 @@
             forceia++
         }
 
-        
-        
+
         function potion_for() {
             endurance = force + 1;
             po = po - 2;
@@ -126,6 +127,32 @@
             po = po - 5; 
             Inventory.splice(Inventory.indexOf("potionGvie", 1));
         }
+        Hero();
+        IA();
+
+        function Fight(Hero,IA) {
+        DrawIA();
+        document.getElementById("messagefight").innerHTML="Debut du combat "
+        while(hp > 0 || hpia > 0){
+            var chance = random(100)
+            if (0 < chance < agilite){
+                hpia = hpia - force
+            }else{
+                hp = hp - forceia
+            }
+        }
+        if (hp = 0){
+            document.getElementById("messagefight").innerHTML="Vous avez perdu !"
+        }else if(hpia = 0){
+            document.getElementById("messagefight").innerHTML="Vous avez gagner"
+            IAwin();
+        }
+    }
+
+
+
+
+
 
     </script>
 </body>
