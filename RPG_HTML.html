@@ -15,7 +15,52 @@
     </form>
     <div id="error message"></div>
     <p id="messagefight"></p>
-    <p id="Display"></p>
+    <p id='title'></p>
+    <div id="Combat">
+      <p id="DisplayPlayer"></p>
+      <p id="Display"></p>
+    </div>
+    <style>
+        body {
+        background-image: url('grass.png');
+        }
+        #player{
+            border: 10px solid brown;
+        }
+        #Combat{
+            display: flex;
+            flex-direction: row;
+            justify-content:space-between;
+        }
+        #DisplayPlayer{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family :Arial, Helvetica, sans-serif;
+            font-size: 30px;
+            color: brown;
+            text-shadow: 2px 2px 10px black;
+        }
+        #Display{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family :Arial, Helvetica, sans-serif;
+            font-size: 30px;
+            color: brown;
+            text-shadow: 2px 2px 10px black;
+        }
+        #title{
+            display: flex;
+            align-items: center;
+            justify-content: center ;
+            font-family :Arial, Helvetica, sans-serif;
+            font-size: 40px;
+            color: brown;
+            text-shadow: 2px 2px 10px black;
+        }
+
+    </style>
     <script>
         var force;
         var agile;
@@ -33,27 +78,27 @@
         var iaName = possibleIAName[getRandomInt(6)];
         
         function DrawIA(){
-            
+            document.getElementById("DisplayPlayer").innerHTML =  "<h2>"+ playerName +"</h2>"+"<img id='player' src='Player.png' width='300' height='500'>" ;
             if (iaName=="Andre"){
-                document.getElementById("Display").innerHTML = "<img src='Andre.png' width='300' height='500'>";
+                document.getElementById("Display").innerHTML = "<h2>Andre</h2>"+"<img id='player' src='Andre.png' width='300' height='500'>" ;
             }
             else if(iaName=="Thibaud"){
-                document.getElementById("Display").innerHTML = "<img src='Thibaud.png' width='300' height='500'>";
+                document.getElementById("Display").innerHTML ="<h2>Thibaud</h2>"+ "<img id='player' src='Thibaud.png' width='300' height='500'>";
             }
             else if(iaName=="Angamara"){
-                document.getElementById("Display").innerHTML = "<img src='Angamara.png' width='300' height='500'>";
+                document.getElementById("Display").innerHTML = "<h2>Angamara</h2>"+"<img id='player'src='Angamara.png' width='300' height='500'>";
             }
             else if(iaName=="François"){
-                document.getElementById("Display").innerHTML ="<img src='François.png' width='300' height='500'>"; 
+                document.getElementById("Display").innerHTML ="<h2>François</h2>"+"<img id='player' src='François.png' width='300' height='500'>"; 
             }
             else if(iaName=="Romain"){
-                document.getElementById("Display").innerHTML ="<img src='Romain.png' width='300' height='500'>"; 
+                document.getElementById("Display").innerHTML ="<h2>Romain</h2>"+"<img id='player' src='Romain.png' width='300' height='500'>"; 
             }
             else if(iaName=="Robin"){
-                document.getElementById("Display").innerHTML = "<img src='Robin.png' width='300' height='500'>";
+                document.getElementById("Display").innerHTML ="<h2>Robin</h2>"+ "<img id='player' src='Robin.png' width='300' height='500'>";
             }
             else if(iaName=="Romuald"){
-                document.getElementById("Display").innerHTML = "<img src='Romuald.png' width='300' height='500'>";
+                document.getElementById("Display").innerHTML ="<h1>Romuald</h1>"+ "<img id='player' src='Romuald.png' width='300' height='500'>";
             }
         }
         function Start() {
@@ -71,7 +116,7 @@
         }
         function Shop() {
             document.getElementById("form").innerHTML = "<button type='submit' onclick=''>Potion de Force </button>" +
-                "<button type='submit' onclick=''>Potion d'agilité</button>" + "<button type='submit' onclick=''>Potion d'endurance</button>" + "<button type='submit' onclick=''>Petite potion de vie</button>" + "<button type='submit' onclick=''>Potion de vie</button>" + "<button type='submit' onclick='Menu()'>Menu</button>";
+                "<button type='submit' onclick=''>Potion d'agilité</button>" + "<button type='submit' onclick=''>Potion d'endurance</button>" + "<button type='submit' onclick=''>Petite potion de vie</button>" + "<button type='submit' onclick=''>Potion de vie</button>" + "</br>"+"<button type='submit' onclick='Menu()'>Menu</button>";
         }
         function Inventory() {
             document.getElementById("form").innerHTML = "";
@@ -105,7 +150,7 @@
 
         function Fight(Hero,IA) {
         DrawIA();
-        document.getElementById("messagefight").innerHTML="Debut du combat "
+        document.getElementById("messagefight").innerHTML="<h1 id='title'>Début du combat!</h1>"
         while(hp > 0 || hpia > 0){
             var chance = random(100)
             if (0 < chance < agilite){
