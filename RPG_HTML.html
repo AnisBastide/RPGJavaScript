@@ -20,14 +20,21 @@
             }
             else {
                 playerName = document.getElementById("playerName").value;
-                document.getElementById("form").innerHTML = "<button type='submit' onclick='Shop()'>Shop</button>" + "<button type='submit' onclick='Fight()''>Fight</button>" +
-                    "<button type='submit' onclick='Inventory()''>Inventory</button> ";
+                Menu();
             }
 
         }
+        function Menu() {
+            document.getElementById("form").innerHTML = "<button type='submit' onclick='Shop()'>Shop</button>" + "<button type='submit' onclick='Fight()''>Fight</button>" +
+                "<button type='submit' onclick='Inventory()''>Inventory</button> ";
+        }
         function Shop() {
-            document.getElementById("form").innerHTML = "<button type='submit' onclick=''>Potion de Soin</button>" +
-            "<button type='submit' onclick=''>Potion d'endurance</button>" + "<button type='submit' onclick=''>Potion</button>";
+            document.getElementById("form").innerHTML = "<button type='submit' onclick=''>Potion de Force </button>" +
+                "<button type='submit' onclick=''>Potion d'agilité</button>" + "<button type='submit' onclick=''>Potion d'endurance</button>" + "<button type='submit' onclick=''>Petite potion de vie</button>" + "<button type='submit' onclick=''>Potion de vie</button>" + "<button type='submit' onclick='Menu()'>Menu</button>";
+        }
+        function Inventory() {
+            document.getElementById("form").innerHTML = "";
+            
         }
     </script>
 </body>
