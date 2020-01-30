@@ -12,6 +12,7 @@
     <form onsubmit="return false" id="form">
         <input type="text" id="playerName" required>
         <button type="submit" onclick="Start()">Start</button>
+        <button type="submit" onclick="test()">test</button>
     </form>
     <div id="error message"></div>
     <script>
@@ -20,7 +21,7 @@
         var endurance;
         var hp;
         var po;
-        var Inventory;
+        var Inventory = [];
 
         function Start() {
             if (playerName = document.getElementById("playerName").value == "") {
@@ -34,9 +35,8 @@
         }
         function Shop() {
             document.getElementById("form").innerHTML = "<button type='submit' onclick=''>Potion de Soin</button>" +
-            "<button type='submit' onclick=''>Potion d'endurance</button>" + "<button type='submit' onclick=''>Potion</button>";
+                "<button type='submit' onclick=''>Potion d'endurance</button>" + "<button type='submit' onclick=''>Potion</button>";
         }
-
 
         function Hero() {
             endurance = 100;
@@ -45,35 +45,35 @@
             agile = 10;
             po = 0;
             Inventory = [];
-        }
+            }
+
 
         function potion_for() {
             endurance = force + 1;
             po = po - 2;
+            (delete Inventory["potionFor"]);
+            Inventory.splice(Inventory.indexOf("potionFor", 1));
         }
         function potion_agi() {
             agile = agile + 1;
             po = po - 2;
+            Inventory.splice(Inventory.indexOf("potionAgi", 1));
         }
-        function potion_endu(){
+        function potion_endu() {
             endurance = endurance + 1;
             po = po - 1;
+            Inventory.splice(Inventory.indexOf("potionEndu", 1));
         }
-        function potion_Pvie(){
+        function potion_Pvie() {
             hp = hp + 10;
             po = po - 3;
+            Inventory.splice(Inventory.indexOf("potionPvie", 1));
         }
-        function potion_Gvie(){
+        function potion_Gvie() {
             hp = hp + 20;
-            po = po - 5;
+            po = po - 5; 
+            Inventory.splice(Inventory.indexOf("potionGvie", 1));
         }
-
-
-
-
-
-
-
 
     </script>
 </body>
