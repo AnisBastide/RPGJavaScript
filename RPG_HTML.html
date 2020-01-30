@@ -21,21 +21,35 @@
         var endurance;
         var hp;
         var po;
-        var Inventory = [];
-
+        var Inventory;
+        var enduranceia=7;
+        var forceia=5;
+        var hpia;
+        const possibleIAName=["Andre","Thibaud","Angamara","François","Romain","Robin","Romuald"];
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+        var iaName = possibleIAName[getRandomInt(6)];
         function Start() {
             if (playerName = document.getElementById("playerName").value == "") {
             }
             else {
                 playerName = document.getElementById("playerName").value;
-                document.getElementById("form").innerHTML = "<button type='submit' onclick='Shop()'>Shop</button>" + "<button type='submit' onclick='Fight()''>Fight</button>" +
-                    "<button type='submit' onclick='Inventory()''>Inventory</button> ";
+                Menu();
             }
 
         }
+        function Menu() {
+            document.getElementById("form").innerHTML = "<button type='submit' onclick='Shop()'>Shop</button>" + "<button type='submit' onclick='Fight()''>Fight</button>" +
+                "<button type='submit' onclick='Inventory()''>Inventory</button> ";
+        }
         function Shop() {
-            document.getElementById("form").innerHTML = "<button type='submit' onclick=''>Potion de Soin</button>" +
-                "<button type='submit' onclick=''>Potion d'endurance</button>" + "<button type='submit' onclick=''>Potion</button>";
+            document.getElementById("form").innerHTML = "<button type='submit' onclick=''>Potion de Force </button>" +
+                "<button type='submit' onclick=''>Potion d'agilité</button>" + "<button type='submit' onclick=''>Potion d'endurance</button>" + "<button type='submit' onclick=''>Petite potion de vie</button>" + "<button type='submit' onclick=''>Potion de vie</button>" + "<button type='submit' onclick='Menu()'>Menu</button>";
+        }
+        function Inventory() {
+            document.getElementById("form").innerHTML = "";
+            
         }
 
         function Hero() {
@@ -45,9 +59,22 @@
             agile = 10;
             po = 0;
             Inventory = [];
-            }
+        }
 
+        function IA(){
+            enduranceia;
+            hpia = enduranceia
+            forceia;
+        }
 
+        function IAwin(){
+            enduranceia++
+            hpia=enduranceia
+            forceia++
+        }
+
+        
+        
         function potion_for() {
             endurance = force + 1;
             po = po - 2;
