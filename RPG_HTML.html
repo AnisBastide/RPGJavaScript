@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form onsubmit="return false" id="form">
+        <input type="text" id="playerName" required>
+        <button type="submit" onclick="Start()">Start</button>
+    </form>
+    <div id="error message"></div>
+    <script>
+        function Start() {
+            if (playerName = document.getElementById("playerName").value == "") {
+            }
+            else {
+                playerName = document.getElementById("playerName").value;
+                document.getElementById("form").innerHTML = "<button type='submit' onclick='Shop()'>Shop</button>" + "<button type='submit' onclick='Fight()''>Fight</button>" +
+                    "<button type='submit' onclick='Inventory()''>Inventory</button> ";
+            }
+
+        }
+        function Shop() {
+            document.getElementById("form").innerHTML = "<button type='submit' onclick=''>Potion de Soin</button>" +
+            "<button type='submit' onclick=''>Potion d'endurance</button>" + "<button type='submit' onclick=''>Potion</button>";
+        }
+    </script>
+</body>
+
+</html>
