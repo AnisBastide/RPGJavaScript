@@ -15,6 +15,7 @@
         <button type="submit" onclick="test()">test</button>
     </form>
     <div id="error message"></div>
+    <p id="Display"></p>
     <script>
         var force;
         var agile;
@@ -30,6 +31,30 @@
             return Math.floor(Math.random() * Math.floor(max));
         }
         var iaName = possibleIAName[getRandomInt(6)];
+        DrawIA();
+        function DrawIA(){
+            if (iaName=="Andre"){
+                document.getElementById("Display").innerHTML = "<img src='Andre.png' width='300' height='500'>";
+            }
+            else if(iaName=="Thibaud"){
+                document.getElementById("Display").innerHTML = "<img src='Thibaud.png' width='300' height='500'>";
+            }
+            else if(iaName=="Angamara"){
+                document.getElementById("Display").innerHTML = "<img src='Angamara.png' width='300' height='500'>";
+            }
+            else if(iaName=="François"){
+                document.getElementById("Display").innerHTML ="<img src='François.png' width='300' height='500'>"; 
+            }
+            else if(iaName=="Romain"){
+                document.getElementById("Display").innerHTML ="<img src='Romain.png' width='300' height='500'>"; 
+            }
+            else if(iaName=="Robin"){
+                document.getElementById("Display").innerHTML = "<img src='Robin.png' width='300' height='500'>";
+            }
+            else if(iaName=="Romuald"){
+                document.getElementById("Display").innerHTML = "<img src='Romuald.png' width='300' height='500'>";
+            }
+        }
         function Start() {
             if (playerName = document.getElementById("playerName").value == "") {
             }
