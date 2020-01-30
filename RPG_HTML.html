@@ -175,6 +175,10 @@
                     hpia=hpia - force;
                     if (hpia <= 0) {
                         document.getElementById("Result").innerHTML = "Victory";
+                        po=po+3;
+                        if(getRandomInt(100)<=10){
+                            Inventory.push("lifeSmall");
+                        }
                         break;
                     }
                     hp = hp-forceia;
