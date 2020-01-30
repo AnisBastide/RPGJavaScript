@@ -10,29 +10,29 @@
 
 <body>
     <form onsubmit="return false" id="form">
-        <input type="text" id="playerName" placeholder="entre un nom fpd (fruit de la passion)" required>
-        <button type='submit' onclick='Start()'>Start</button>
+        <input type="text" id="playerName" placeholder="entre un nom fpd (fruit de la passion)" required> <!--Creation du nom du personage-->
+        <button type='submit' onclick='Start()'>Start</button> <!--Button start-->
     </form>
     <p id="Result"></p>
     <div id="error message"></div>
     <p id="messagefight"></p>
-    <p id='title'></p>
+    <p id='title'></p>                          <!--Creation des espaces de textes a utiliser pour l'innerhtml -->
     <div id="Combat">
         <p id="DisplayPlayer"></p>
         <p id="Display"></p>
     </div>
-    <style>
+    <style>                     /* INITIATION DU CSS*/
         body {
-            background-image: url('grass.png');
+            background-image: url('grass.png');     /* INITIATION DU BACKGROUD*/
         }
 
         #player {
-            border: 10px solid brown;
+            border: 10px solid brown;   /*BORDURE POUR LE PLAYER*/
         }
 
         #Combat {
             display: flex;
-            flex-direction: row;
+            flex-direction: row;                /*MISE EN PAGE DE LA PAGE COMBAT*/
             justify-content: space-between;
         }
 
@@ -40,7 +40,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;          /*MISE EN PAGE DU PLAYER*/
             font-size: 30px;
             color: brown;
             text-shadow: 2px 2px 10px black;
@@ -60,18 +60,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;      /* mise en page du titre*/
             font-size: 40px;
             color: brown;
             text-shadow: 2px 2px 10px black;
         }
     </style>
-    <script>
+    <script>                /*Initiation du js*/
         var potion;
         var force;
         var agility;
         var endurance;
-        var hp;
+        var hp;                                     /*Initiation des variables de carateristique*/
         var po;
         var Inventory = [];
         var enduranceia = 7;
@@ -80,9 +80,9 @@
         var maxStrength;
         var maxAgility;
         var maxEndurance;
-        const possibleIAName = ["Andre", "Thibaud", "Angamara", "François", "Romain", "Robin", "Romuald"];
+        const possibleIAName = ["Andre", "Thibaud", "Angamara", "François", "Romain", "Robin", "Romuald"];      /*Initiation des noms de l'ia*/
         function getRandomInt(max) {
-            return Math.floor(Math.random() * Math.floor(max));
+            return Math.floor(Math.random() * Math.floor(max));     /*Creation de la fonction random*/
         }
         var iaName = possibleIAName[getRandomInt(6)];
 
@@ -92,7 +92,7 @@
                 document.getElementById("Display").innerHTML = "<h2>Andre</h2>" + "<img id='player' src='Andre.png' width='300' height='500'>";
             }
             else if (iaName == "Thibaud") {
-                document.getElementById("Display").innerHTML = "<h2>Thibaud</h2>" + "<img id='player' src='Thibaud.png' width='300' height='500'>";
+                document.getElementById("Display").innerHTML = "<h2>Thibaud</h2>" + "<img id='player' src='Thibaud.png' width='300' height='500'>";     /*Creation des sprite du personnage et de l'ia*/
             }
             else if (iaName == "Angamara") {
                 document.getElementById("Display").innerHTML = "<h2>Angamara</h2>" + "<img id='player'src='Angamara.png' width='300' height='500'>";
@@ -111,7 +111,7 @@
             }
         }
         function Start() {
-            if (playerName = document.getElementById("playerName").value == "") {
+            if (playerName = document.getElementById("playerName").value == "") {       /*intialisation du menu de fin de combat et du nom du hero*/
 
             }
             else {
@@ -124,20 +124,20 @@
         }
         function Menu() {
             document.getElementById("error message").innerHTML = "";
-            document.getElementById("form").innerHTML = "<button type='submit' onclick='Shop()'>Shop</button>" + "<button type='submit' onclick='Fight()''>Fight</button>" +
+            document.getElementById("form").innerHTML = "<button type='submit' onclick='Shop()'>Shop</button>" + "<button type='submit' onclick='Fight()''>Fight</button>" +    /*Initialisation des menu principale*/
                 "<button type='submit' onclick='PlayerInventory()'>Inventory</button>";
         }
         function Shop() {
             document.getElementById("error message").innerHTML = "";
             document.getElementById("form").innerHTML = "<button type='submit' onclick='BuyPotion(\"strength\")'>Potion de Force </button>" +
                 "<button type='submit' onclick='BuyPotion(\"agility\")'>Potion d'agilité</button>" + "<button type='submit' onclick='BuyPotion(\"endurance\")'>Potion d'endurance</button>" +
-                "<button type='submit' onclick='BuyPotion(\"lifeSmall\")'>Petite potion de vie</button>" + "<button type='submit' onclick='BuyPotion(\"lifeBig\")'>Grosse potion de vie</button>" +
+                "<button type='submit' onclick='BuyPotion(\"lifeSmall\")'>Petite potion de vie</button>" + "<button type='submit' onclick='BuyPotion(\"lifeBig\")'>Grosse potion de vie</button>" +  /*Initialisation des menu shop*/
                 "<button type='submit' onclick='Menu()'>Menu</button>";
         }
         function PlayerInventory() {
             document.getElementById("error message").innerHTML = "";
             document.getElementById("form").innerHTML = "<p>Que voulez vous utiliser?</p>" + "<button type='submit' onclick='StrengthPotion()'>Potion de Force </button>" +
-                "<button type='submit' onclick='AgilityPotion()'>Potion d'agilité</button>" + "<button type='submit' onclick='EndurancePotion()'>Potion d'endurance</button>" +
+                "<button type='submit' onclick='AgilityPotion()'>Potion d'agilité</button>" + "<button type='submit' onclick='EndurancePotion()'>Potion d'endurance</button>" +  /*Initialisation des menu inventaire*/
                 "<button type='submit' onclick='SmallLifePotion()'>Petite potion de vie</button>" + "<button type='submit' onclick='BigLifePotion()'>Grosse potion de vie</button>" +
                 "<button type='submit' onclick='Menu()'>Menu</button>";
         }
@@ -145,7 +145,7 @@
             endurance = 100;
             hp = endurance;
             force = 10;
-            agility = 10;
+            agility = 10;            /*Création des carateristique du hero*/
             po = 0;
             maxStrength = force;
             maxAgility = agility;
@@ -153,20 +153,20 @@
         }
         function ResetStats() {
             hpia = enduranceia;
-            endurance = maxEndurance;
+            endurance = maxEndurance;    /*Création de la fonction reste des carateristique*/
             agility = maxAgility;
             force = maxStrength;
         }
         function IAwin() {
             enduranceia++
-            hpia = enduranceia
+            hpia = enduranceia       /*Création de la fonction des carateristique de l'ia qui augemente quand l'hero gagne*/
             forceia++
         }
-        function Fight() {
+        function Fight() {                   /*Création de la fonction fight*/
             DrawIA();
             let firstHit = false;
             while (hp != 0 && hpia != 0) {
-                if (firstHit == false && getRandomInt(100) <= agility) {
+                if (firstHit == false && getRandomInt(100) <= agility) {                 /*Premiere personne a attaque*/
                     firstHit = true;
                     hpia -= force;
 
@@ -174,7 +174,7 @@
                 else {
                     hpia=hpia - force;
                     if (hpia <= 0) {
-                        document.getElementById("Result").innerHTML = "Victory";
+                        document.getElementById("Result").innerHTML = "Victory";             /*Création de la victoire du personage*/
                         po=po+3;
                         if(getRandomInt(100)<=10){
                             Inventory.push("lifeSmall");
@@ -183,7 +183,7 @@
                     }
                     hp = hp-forceia;
                     if (hp <=0) {
-                        document.getElementById("Result").innerHTML = "Defeat";
+                        document.getElementById("Result").innerHTML = "Defeat";              /*Création de la defaite du personage*/
                         break;
                     }
                     
@@ -203,26 +203,26 @@
         function StrengthPotion() {
             if (Inventory.includes("strength")) {
                 force = force + 1;
-                Inventory.splice(Inventory.indexOf("strength", 1));
+                Inventory.splice(Inventory.indexOf("strength", 1));                         /*Création de la potion de force*/
             }
             else {
                 document.getElementById("error message").innerHTML = "Vous n'avez pas de potion de force";
             }
         }
         function AgilityPotion() {
-            if (Inventory.includes("agility")) {
-                agile = agile + 1;
-                Inventory.splice(Inventory.indexOf("agility", 1));
+            if (Inventory.includes("agility")) {                                
+                agile = agile + 1;                                              
+                Inventory.splice(Inventory.indexOf("agility", 1));                           /*Création de la potion d'agilité*/
             }
             else {
-                document.getElementById("error message").innerHTML = "Vous n'avez pas de potion d'agilité";
+                document.getElementById("error message").innerHTML = "Vous n'avez pas de potion d'agilité";                     
             }
 
         }
         function EndurancePotion() {
             if (Inventory.includes("endurance")) {
                 endurance = endurance + 1;
-                Inventory.splice(Inventory.indexOf("endurance", 1));
+                Inventory.splice(Inventory.indexOf("endurance", 1));                            /*Création de la potion d'endurance*/
             }
             else {
                 document.getElementById("error message").innerHTML = "Vous n'avez pas de potion d'endurance";
@@ -232,7 +232,7 @@
             if (Inventory.includes("lifeSmall")) {
                 hp = hp + 10;
                 if (hp > endurance) {
-                    hp = endurance;
+                    hp = endurance;                                         /*Création de la potion de la petite potion de vie*/
                 }
                 Inventory.splice(Inventory.indexOf("lifeSmall", 1));
             }
@@ -246,7 +246,7 @@
                 if (hp > endurance) {
                     hp = endurance;
                 }
-                Inventory.splice(Inventory.indexOf("lifeBig", 1));
+                Inventory.splice(Inventory.indexOf("lifeBig", 1));                              /*Création de la potion de la grande potion de vie*/
             }
             else {
                 document.getElementById("error message").innerHTML = "Vous n'avez pas de grande potion de soin";
@@ -262,7 +262,7 @@
                 po = po - 2;
                 Inventory.push("agility");
             }
-            else if (potion == "endurance" && po >= 2) {
+            else if (potion == "endurance" && po >= 2) {                    /*Création du shop*/
                 po = po - 2;
                 Inventory.push("endurance");
             }
