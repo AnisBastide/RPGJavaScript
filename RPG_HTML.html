@@ -21,7 +21,14 @@
         var hp;
         var po;
         var Inventory;
-
+        var enduranceia=7;
+        var forceia=5;
+        var hpia;
+        const possibleIAName=["Andre","Thibaud","Angamara","François","Romain","Robin","Romuald"];
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+        var iaName = possibleIAName[getRandomInt(6)];
         function Start() {
             if (playerName = document.getElementById("playerName").value == "") {
             }
@@ -52,6 +59,18 @@
             agile = 10;
             po = 0;
             Inventory = [];
+        }
+
+        function IA(){
+            enduranceia;
+            hpia = enduranceia
+            forceia;
+        }
+
+        function IAwin(){
+            enduranceia++
+            hpia=enduranceia
+            forceia++
         }
 
 
