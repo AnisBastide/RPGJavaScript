@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>RPG</title>
 </head>
 
 <body>
     <form onsubmit="return false" id="form">
-        <input type="text" id="playerName" required>
+        <input type="text" id="playerName" placeholder="entre un nom fpd (fruit de la passion)" required>
         <button type="submit" onclick="Start()">Start</button>
     </form>
     <div id="error message"></div>
@@ -24,6 +24,7 @@
 
         function Start() {
             if (playerName = document.getElementById("playerName").value == "") {
+
             }
             else {
                 playerName = document.getElementById("playerName").value;
@@ -37,14 +38,13 @@
         }
         function Shop() {
             document.getElementById("form").innerHTML = "<button type='submit' onclick=''>Potion de Force </button>" +
-                "<button type='submit' onclick=''>Potion d'agilité</button>" + "<button type='submit' onclick=''>Potion d'endurance</button>" + "<button type='submit' onclick=''>Petite potion de vie</button>" + "<button type='submit' onclick=''>Potion de vie</button>" + "<button type='submit' onclick='Menu()'>Menu</button>";
+                "<button type='submit' onclick=''>Potion d'agilité</button>" + "<button type='submit' onclick=''>Potion d'endurance</button>" +
+                 "<button type='submit' onclick=''>Petite potion de vie</button>" + "<button type='submit' onclick=''>Potion de vie</button>" + 
+                "<button type='submit' onclick='Menu()'>Menu</button>";
         }
         function Inventory() {
-            document.getElementById("form").innerHTML = "";
-            
+            document.getElementById("form").innerHTML = "";  
         }
-
-
         function Hero() {
             endurance = 100;
             hp = endurance
@@ -53,12 +53,6 @@
             po = 0;
             Inventory = [];
         }
-
-
-
-
-
-
     </script>
 </body>
 
